@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <title>Lim Nguen Foundation (LNF) | Uplifting Lives Through Locally Led Humanitarian Action</title>
+    <meta name="description" content="Lim Nguen Foundation is a National NGO in South Sudan empowering displaced and host communities through sustainable solutions, locally led resilience-building, and Education in Emergencies." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        :root {
+            --navy-900: #0A0F1F;
+            --navy-800: #111827;
+            --navy-700: #1E2A3A;
+            --gold: #D4A12A;
+            --gold-light: #F5D67B;
+            --teal: #0D9488;
+            --teal-light: #5EEAD4;
+            --cream: #FAF8F4;
+            --white: #FFFFFF;
+            --gray-600: #6B7280;
+            --gray-700: #374151;
+            --border: rgba(0,0,0,0.04);
+            --shadow-sm: 0 8px 25px rgba(0,0,0,0.05);
+            --shadow-md: 0 18px 50px rgba(0,0,0,0.08);
+            --shadow-lg: 0 30px 70px rgba(0,0,0,0.12);
+            --transition: 0.35s cubic-bezier(0.22,1,0.36,1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--navy-800);
+            background: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, h4, h5 { font-family: 'Poppins', sans-serif; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--navy-900);
+            color: rgba(255,255,255,0.9);
+            font-size: 13px;
+            padding: 8px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            z-index: 1001;
+            position: relative;
+        }
+        .top-bar a { color: rgba(255,255,255,0.85); transition: color 0.3s; }
+        .top-bar a:hover { color: var(--gold-light); }
+        .top-bar .left, .top-bar .right { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 14px clamp(20px,4vw,60px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+            transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+        }
+        .navbar.scrolled { background: rgba(255,255,255,0.98); box-shadow: 0 15px 40px rgba(0,0,0,0.1); padding: 10px clamp(20px,4vw,60px); }
+        .logo { display: flex; align-items: center; gap: 12px; color: var(--navy-900); font-size: 22px; font-weight: 700; z-index: 1002; }
+        .logo img { width: 46px; height: 46px; border-radius: 12px; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .nav-links { display: flex; gap: 4px; list-style: none; align-items: center; }
+        .nav-links a { color: var(--navy-900); font-weight: 500; font-size: 14px; padding: 8px 14px; border-radius: 8px; transition: all 0.3s; white-space: nowrap; position: relative; }
+        .nav-links a::after { content:''; position:absolute; bottom:2px; left:50%; width:0; height:2px; background: var(--gold); transition:all 0.3s; transform:translateX(-50%); }
+        .nav-links a:hover { color: var(--teal); }
+        .nav-links a:hover::after { width:60%; }
+        .dropdown { position: relative; }
+        .dropdown-menu { position:absolute; top:100%; left:0; background:white; border-radius:16px; box-shadow:var(--shadow-md); padding:8px 0; min-width:220px; opacity:0; visibility:hidden; transform:translateY(10px); transition:0.3s; border:1px solid var(--border); z-index:10; }
+        .dropdown:hover .dropdown-menu { opacity:1; visibility:visible; transform:translateY(0); }
+        .dropdown-menu a { display:block; padding:10px 20px; font-weight:500; color:var(--navy-900); font-size:13px; }
+        .dropdown-menu a:hover { background:var(--cream); color:var(--teal); }
+        .nav-cta { background:var(--gold); color:var(--navy-900) !important; padding:10px 22px; border-radius:999px; font-weight:700; box-shadow:0 6px 20px rgba(212,161,42,0.4); }
+        .nav-cta:hover { background:var(--gold-light); }
+
+        .mobile-toggle { display:none; background:none; border:none; color:var(--navy-900); cursor:pointer; z-index:1002; padding:6px; }
+        .mobile-toggle span { display:block; width:24px; height:2px; background:currentColor; margin:5px 0; transition:0.3s; border-radius:2px; }
+        .mobile-menu { position:fixed; inset:0; background:rgba(255,255,255,0.98); backdrop-filter:blur(20px); z-index:1000; padding:100px 30px 30px; transform:translateX(100%); transition:0.4s ease; display:flex; flex-direction:column; gap:4px; overflow-y:auto; }
+        .mobile-menu.active { transform:translateX(0); }
+        .mobile-menu a { color:var(--navy-900); font-size:20px; font-family:'Poppins',sans-serif; font-weight:600; padding:14px 0; border-bottom:1px solid var(--border); display:block; }
+        .mobile-dropdown-btn { background:none; border:none; width:100%; display:flex; justify-content:space-between; align-items:center; color:var(--navy-900); font-size:20px; font-family:'Poppins',sans-serif; font-weight:600; padding:14px 0; border-bottom:1px solid var(--border); cursor:pointer; }
+        .mobile-dropdown-btn i { font-size:14px; transition:transform 0.3s; }
+        .mobile-submenu { display:none; padding-left:20px; margin-bottom:8px; }
+        .mobile-submenu.open { display:block; }
+        .mobile-submenu a { font-size:18px; padding:10px 0; border-bottom:none; }
+
+        /* Hero Slider */
+        .hero { position:relative; height:100vh; min-height:650px; overflow:hidden; }
+        .hero-slide { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity 1.2s ease; transform:scale(1.05); }
+        .hero-slide.active { opacity:1; transform:scale(1); }
+        .hero-overlay { position:absolute; inset:0; background:linear-gradient(135deg, rgba(10,15,31,0.88) 0%, rgba(13,148,136,0.5) 100%); z-index:1; }
+        .hero-content { position:relative; z-index:2; max-width:800px; padding:0 clamp(20px,5vw,40px); height:100%; display:flex; flex-direction:column; justify-content:center; color:white; }
+        .hero-tag { display:inline-block; padding:6px 18px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); border-radius:999px; font-size:12px; font-weight:600; text-transform:uppercase; margin-bottom:20px; backdrop-filter:blur(4px); letter-spacing:1px; }
+        .hero h1 { font-size: clamp(36px,6vw,64px); margin-bottom:12px; text-shadow:0 4px 20px rgba(0,0,0,0.4); }
+        .hero .motto { font-size: clamp(18px,2.5vw,26px); color:var(--gold-light); margin-bottom:20px; font-weight:600; }
+        .hero p { font-size:18px; max-width:600px; margin-bottom:30px; color:rgba(255,255,255,0.9); }
+        .btn-group { display:flex; gap:16px; flex-wrap:wrap; }
+        .btn-primary { background:white; color:var(--navy-900); padding:14px 32px; border-radius:999px; font-weight:700; display:inline-flex; align-items:center; gap:8px; transition:all 0.3s; box-shadow:0 10px 25px rgba(0,0,0,0.2); border:none; cursor:pointer; }
+        .btn-primary:hover { transform:translateY(-3px); box-shadow:0 15px 35px rgba(0,0,0,0.3); background:var(--cream); }
+        .btn-outline { border:2px solid white; color:white; padding:14px 32px; border-radius:999px; font-weight:600; background:transparent; cursor:pointer; transition:all 0.3s; }
+        .btn-outline:hover { background:rgba(255,255,255,0.2); }
+
+        /* Sections */
+        section { padding:100px clamp(20px,5vw,80px); }
+        .section-gray { background:var(--cream); }
+        .eyebrow { display:inline-block; color:var(--teal); font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; }
+        .section-title { font-size: clamp(32px,5vw,48px); margin-bottom:24px; color:var(--navy-900); }
+        .section-subtitle { color:var(--gray-600); font-size:18px; margin-bottom:40px; }
+        .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; }
+        .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; }
+        .card { background:white; border-radius:20px; padding:32px; box-shadow:var(--shadow-sm); transition:var(--transition); border:1px solid var(--border); position:relative; overflow:hidden; }
+        .card:hover { transform:translateY(-8px); box-shadow:var(--shadow-lg); }
+        .card::after { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--gold),var(--teal)); transform:scaleX(0); transform-origin:left; transition:0.4s; }
+        .card:hover::after { transform:scaleX(1); }
+        .card-img { aspect-ratio:16/10; border-radius:16px; overflow:hidden; margin-bottom:20px; }
+        .card-img img { width:100%; height:100%; object-fit:cover; transition:0.6s; }
+        .card:hover .card-img img { transform:scale(1.06); }
+        .cta-link { color:var(--teal); font-weight:700; display:inline-flex; align-items:center; gap:6px; margin-top:16px; transition:color 0.3s; }
+        .cta-link:hover { color:var(--gold); }
+
+        .reveal { opacity:0; transform:translateY(30px); transition:0.8s ease; }
+        .reveal.visible { opacity:1; transform:translateY(0); }
+
+        /* Mission, Values */
+        .card-icon { width:60px; height:60px; border-radius:18px; background:#E0F2F1; display:flex; align-items:center; justify-content:center; margin-bottom:20px; font-size:28px; color:var(--teal); }
+        .values-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:15px; }
+        .value-item { display:flex; align-items:center; gap:10px; padding:12px; background:white; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04); font-weight:600; color:var(--navy-900); transition:all 0.3s; }
+        .value-item:hover { transform:translateY(-3px); box-shadow:0 6px 15px rgba(0,0,0,0.08); }
+        .approach-steps { display:flex; flex-direction:column; gap:15px; }
+        .step { display:flex; align-items:flex-start; gap:12px; }
+        .step-number { background:var(--gold); color:var(--navy-900); width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0; }
+
+        /* Programs */
+        .programs-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; margin-top:40px; }
+        .program-card { background:white; border-radius:20px; padding:32px 28px; box-shadow:var(--shadow-sm); transition:all 0.4s; border:1px solid var(--border); display:flex; flex-direction:column; position:relative; overflow:hidden; }
+        .program-card::after { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--gold),var(--teal)); transform:scaleX(0); transform-origin:left; transition:0.5s; }
+        .program-card:hover::after { transform:scaleX(1); }
+        .program-card:hover { transform:translateY(-10px); box-shadow:var(--shadow-lg); border-color:rgba(13,148,136,0.2); }
+        .program-icon { width:64px; height:64px; border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:28px; margin-bottom:20px; color:white; background:linear-gradient(135deg,var(--teal),var(--navy-800)); box-shadow:0 8px 20px rgba(13,148,136,0.3); transition:transform 0.3s; }
+        .program-card:hover .program-icon { transform:scale(1.1) rotate(3deg); }
+        .program-card h3 { font-size:24px; color:var(--navy-900); margin-bottom:10px; }
+        .program-card p { color:var(--gray-600); font-size:15px; margin-bottom:15px; flex-grow:1; }
+        .program-list { list-style:none; padding:0; margin:0 0 20px 0; }
+        .program-list li { display:flex; align-items:center; gap:10px; font-size:13px; padding:4px 0; }
+        .program-list li i { color:var(--teal); font-size:12px; }
+
+        /* Where We Work */
+        .where-we-work { position:relative; padding:100px clamp(20px,5vw,80px); background-size:cover; background-position:center; background-attachment:fixed; color:white; overflow:hidden; }
+        .where-overlay { position:absolute; inset:0; background:linear-gradient(135deg, rgba(10,15,31,0.9) 0%, rgba(13,148,136,0.6) 100%); z-index:1; }
+        .where-content { position:relative; z-index:2; max-width:1200px; margin:0 auto; }
+        .where-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:25px; }
+        .where-card { background:rgba(255,255,255,0.1); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.2); border-radius:20px; padding:25px; text-align:center; transition:0.4s; }
+        .where-card:hover { background:rgba(255,255,255,0.2); transform:translateY(-8px); }
+        .where-icon { width:55px; height:55px; border-radius:16px; background:var(--gold); color:var(--navy-900); display:flex; align-items:center; justify-content:center; margin:0 auto 15px; font-size:22px; }
+        .where-card h3 { font-size:24px; margin-bottom:8px; }
+        .where-card p { font-size:14px; color:rgba(255,255,255,0.8); }
+
+        /* Impact */
+        .impact-section { background:linear-gradient(135deg, var(--navy-900) 0%, #0A0F1F 100%); padding:100px clamp(20px,5vw,80px); position:relative; overflow:hidden; }
+        .impact-section::before { content:''; position:absolute; top:-50%; right:-20%; width:500px; height:500px; background:radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%); border-radius:50%; }
+        .impact-container { max-width:1100px; margin:0 auto; position:relative; z-index:1; }
+        .impact-heading { text-align:center; margin-bottom:60px; }
+        .impact-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:30px; }
+        .impact-stat { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:35px 20px; text-align:center; backdrop-filter:blur(6px); transition:0.4s; }
+        .impact-stat:hover { transform:translateY(-10px); background:rgba(255,255,255,0.12); border-color:rgba(212,161,42,0.4); }
+        .stat-icon { width:70px; height:70px; border-radius:20px; background:rgba(212,161,42,0.2); color:var(--gold-light); display:flex; align-items:center; justify-content:center; font-size:32px; margin:0 auto 20px; }
+        .stat-number { font-size:58px; font-weight:700; color:white; line-height:1; margin-bottom:8px; }
+        .stat-label { color:rgba(255,255,255,0.7); font-size:16px; font-weight:600; letter-spacing:1px; text-transform:uppercase; }
+
+        /* News */
+        .news-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px; }
+        .news-card { background:white; border-radius:20px; overflow:hidden; box-shadow:var(--shadow-sm); transition:0.4s; display:flex; flex-direction:column; border:1px solid var(--border); }
+        .news-card:hover { transform:translateY(-10px); box-shadow:var(--shadow-lg); }
+        .news-image { aspect-ratio:16/10; overflow:hidden; }
+        .news-image img { width:100%; height:100%; object-fit:cover; transition:0.6s; }
+        .news-card:hover .news-image img { transform:scale(1.08); }
+        .news-body { padding:24px; flex-grow:1; display:flex; flex-direction:column; }
+        .news-meta { display:flex; gap:15px; font-size:12px; color:var(--gray-600); margin-bottom:12px; }
+        .news-meta i { color:var(--teal); margin-right:4px; }
+        .news-category { background:#E0F2F1; color:var(--teal); padding:4px 12px; border-radius:999px; font-weight:600; font-size:11px; text-transform:uppercase; }
+        .news-card h3 { font-size:22px; color:var(--navy-900); margin-bottom:10px; }
+        .news-excerpt { color:var(--gray-600); font-size:14px; flex-grow:1; margin-bottom:20px; }
+
+        /* Resources */
+        .resources-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:30px; margin-top:20px; }
+        .resource-card { background:white; border-radius:20px; padding:35px 30px; box-shadow:var(--shadow-sm); transition:0.45s; border:1px solid var(--border); position:relative; overflow:hidden; display:flex; flex-direction:column; }
+        .resource-card:hover { transform:translateY(-12px); box-shadow:var(--shadow-lg); }
+        .resource-icon { width:60px; height:60px; border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:28px; margin-bottom:20px; color:white; background:linear-gradient(135deg,var(--teal),var(--navy-800)); }
+        .resource-card h3 { font-size:24px; color:var(--navy-900); margin-bottom:10px; }
+        .resource-card p { color:var(--gray-600); font-size:14px; flex-grow:1; }
+
+        /* Partners */
+        .partners-section { background:var(--cream); padding:100px 0 80px; overflow:hidden; }
+        .partner-marquee { overflow:hidden; position:relative; margin-top:30px; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+        .partner-track { display:flex; width:max-content; animation:marquee 30s linear infinite; }
+        .partner-track:hover { animation-play-state:paused; }
+        .partner-item { display:flex; align-items:center; gap:10px; background:white; border-radius:16px; padding:20px 30px; margin:0 15px; box-shadow:var(--shadow-sm); transition:0.3s; border:1px solid var(--border); }
+        .partner-item i { font-size:24px; color:var(--teal); }
+        .partner-item span { font-weight:700; color:var(--navy-900); font-size:16px; }
+        .partner-item:hover { transform:translateY(-5px); box-shadow:var(--shadow-md); border-color:var(--gold); }
+        @keyframes marquee { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+
+        /* Get Involved */
+        .get-involved { background:linear-gradient(180deg, #FFFFFF 0%, var(--cream) 100%); padding:100px clamp(20px,5vw,80px); }
+        .involve-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; margin-top:50px; }
+        .involve-card { background:white; border-radius:20px; padding:35px 30px; box-shadow:var(--shadow-sm); transition:0.4s; border:1px solid var(--border); display:flex; flex-direction:column; }
+        .involve-card:hover { transform:translateY(-12px); box-shadow:var(--shadow-lg); }
+        .involve-icon { width:70px; height:70px; border-radius:20px; display:flex; align-items:center; justify-content:center; font-size:32px; margin-bottom:20px; color:white; background:linear-gradient(135deg,var(--teal),var(--navy-800)); box-shadow:0 8px 20px rgba(13,148,136,0.3); }
+        .involve-card h3 { font-size:26px; color:var(--navy-900); margin-bottom:12px; }
+        .involve-card p { color:var(--gray-600); font-size:15px; margin-bottom:18px; }
+        .involve-list { list-style:none; margin-bottom:20px; flex-grow:1; }
+        .involve-list li { display:flex; align-items:center; gap:10px; font-size:14px; padding:6px 0; }
+        .involve-list li i { color:var(--teal); font-size:12px; }
+
+        /* Contact */
+        .contact-section { background:var(--cream); }
+        .contact-wrapper { display:grid; grid-template-columns:1fr 1.2fr; gap:50px; margin-top:50px; }
+        .contact-info { display:grid; grid-template-columns:1fr 1fr; gap:25px; }
+        .info-card { background:white; border-radius:20px; padding:28px 22px; box-shadow:var(--shadow-sm); border:1px solid var(--border); transition:0.3s; }
+        .info-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-md); }
+        .info-icon { width:50px; height:50px; border-radius:14px; background:#E0F2F1; color:var(--teal); display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:15px; }
+        .info-card h4 { font-size:22px; color:var(--navy-900); margin-bottom:8px; }
+        .info-card p { color:var(--gray-600); font-size:14px; }
+        .contact-form-card { background:white; border-radius:20px; padding:40px 35px; box-shadow:var(--shadow-md); border:1px solid var(--border); }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:15px; }
+        .form-group { margin-bottom:20px; }
+        .form-group label { font-weight:600; font-size:14px; color:var(--navy-900); margin-bottom:6px; display:block; }
+        .form-group input, .form-group textarea { width:100%; padding:14px 16px; border-radius:12px; border:1px solid #E2E8F0; background:var(--cream); font-family:'Lato',sans-serif; font-size:15px; transition:0.3s; outline:none; }
+        .form-group input:focus, .form-group textarea:focus { border-color:var(--teal); box-shadow:0 0 0 3px rgba(13,148,136,0.15); background:white; }
+        .form-group textarea { resize:vertical; min-height:120px; }
+        .btn-submit { width:100%; justify-content:center; padding:15px; font-size:16px; }
+
+        /* Footer */
+        .footer { background:var(--navy-900); color:rgba(255,255,255,0.85); padding:80px clamp(20px,5vw,60px) 20px; }
+        .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1.2fr; gap:40px; margin-bottom:50px; }
+        .footer-col h4 { font-size:20px; color:var(--gold-light); margin-bottom:20px; }
+        .footer-col ul { list-style:none; padding:0; }
+        .footer-col ul li { margin-bottom:10px; }
+        .footer-col ul li a { color:rgba(255,255,255,0.7); font-size:14px; transition:0.3s; }
+        .footer-col ul li a:hover { color:var(--gold-light); }
+        .footer-about p { color:rgba(255,255,255,0.7); font-size:14px; margin-bottom:20px; }
+        .footer-socials { display:flex; gap:12px; }
+        .footer-socials a { display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.1); color:white; font-size:16px; transition:0.3s; }
+        .footer-socials a:hover { background:var(--gold-light); color:var(--navy-900); transform:translateY(-4px); }
+        .footer-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:30px; text-align:center; }
+        .footer-bottom p { font-size:13px; color:rgba(255,255,255,0.5); }
+
+        .back-to-top { position:fixed; bottom:30px; right:30px; width:50px; height:50px; border-radius:50%; background:var(--teal); color:white; display:flex; align-items:center; justify-content:center; font-size:20px; cursor:pointer; opacity:0; visibility:hidden; transition:0.3s; z-index:999; border:none; box-shadow:0 10px 25px rgba(13,148,136,0.4); }
+        .back-to-top.visible { opacity:1; visibility:visible; }
+        .back-to-top:hover { background:var(--navy-800); }
+
+        /* Responsive */
+        @media (max-width:1024px) {
+            .nav-links { display:none; }
+            .mobile-toggle { display:block; }
+            .grid-2, .grid-3 { grid-template-columns:1fr; }
+            .footer-grid { grid-template-columns:1fr 1fr; }
+            .contact-wrapper { grid-template-columns:1fr; }
+        }
+        @media (max-width:768px) {
+            .top-bar { display:none; }
+            .footer-grid { grid-template-columns:1fr; }
+            .contact-info { grid-template-columns:1fr; }
+            .form-row { grid-template-columns:1fr; gap:0; }
+            .programs-grid, .news-grid, .involve-grid, .resources-grid { grid-template-columns:1fr; }
+            .hero { min-height:550px; }
+            .hero h1 { font-size:34px; }
+            .hero .motto { font-size:20px; }
+            .hero p { font-size:15px; }
+        }
+
+      
+    /* Enhanced Mobile Menu Styling */
+    .mobile-menu {
+        background: #FFFFFF;
+        padding: 100px 24px 40px;
+        font-family: 'Lato', sans-serif;   /* Clean sans-serif font */
+    }
+
+    .mobile-menu a,
+    .mobile-dropdown-btn {
+        font-family: 'Lato', sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        padding: 14px 0;
+        color: #1F2937;
+        border-bottom: 1px solid #F0F2F5;
+        transition: all 0.2s ease;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-dropdown-btn:hover {
+        color: #0D9488;   /* Your accent color */
+        padding-left: 8px;
+    }
+
+    .mobile-dropdown-btn i {
+        font-size: 16px;
+        transition: transform 0.3s ease;
+        color: #9CA3AF;
+    }
+
+    .mobile-submenu {
+        padding-left: 20px;
+        margin-bottom: 4px;
+        background: #F9FAFB;
+        border-radius: 8px;
+    }
+
+    .mobile-submenu a {
+        font-size: 16px;
+        font-weight: 400;
+        padding: 10px 0;
+        border-bottom: none;
+        color: #4B5563;
+    }
+
+    .mobile-submenu a:hover {
+        color: #0D9488;
+        padding-left: 4px;
+    }
+
+    /* Active state for main links */
+    .mobile-menu a:active,
+    .mobile-dropdown-btn:active {
+        color: #0D9488;
+    }
+
+    /* Remove default button styles */
+    .mobile-dropdown-btn {
+        background: none;
+        border: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    /* Optional: Add a subtle border radius to the menu container */
+    .mobile-menu {
+        border-radius: 0 0 16px 16px;
+    }
+
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="left">
+            <a href="tel:+211927960466"><i class="fas fa-phone"></i> 0927 960 466</a>
+            <span>|</span>
+            <a href="mailto:info@limnguenfoundation-ss.org"><i class="fas fa-envelope"></i> info@limnguenfoundation-ss.org</a>
+        </div>
+        <div class="right">
+            <span>Juba, South Sudan</span>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">
+            <img src="assets/limlogo.jpg" alt="LNF Logo" />
+            <span>Lim Nguen Foundation</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li class="dropdown">
+                <a href="#about">About <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-menu">
+                    <a href="#mission">Mission & Vision</a>
+                    <a href="#story">Our Story</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#programs">Programs <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-menu">
+                    <a href="#eie">Education in Emergencies</a>
+                    <a href="#resilience">Resilience Building</a>
+                    <a href="#localization">Locally Led Action</a>
+                    <a href="#youth">Youth Leadership</a>
+                </div>
+            </li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#partners">Partners</a></li>
+            <li class="dropdown">
+                <a href="#get-involved">Get Involved <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-menu">
+                    <a href="#volunteer">Volunteer</a>
+                    <a href="#donate">Donate</a>
+                    <a href="#partner">Partner</a>
+                </div>
+            </li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#donate" class="nav-cta">Support Us</a></li>
+        </ul>
+        <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#">Home</a>
+        <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown(this)">About <i class="fas fa-chevron-down"></i></button>
+        <div class="mobile-submenu">
+            <a href="#mission">Mission & Vision</a>
+            <a href="#story">Our Story</a>
+        </div>
+        <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown(this)">Programs <i class="fas fa-chevron-down"></i></button>
+        <div class="mobile-submenu">
+            <a href="#eie">Education in Emergencies</a>
+            <a href="#resilience">Resilience Building</a>
+            <a href="#localization">Locally Led Action</a>
+            <a href="#youth">Youth Leadership</a>
+        </div>
+        <a href="#news">News</a>
+        <a href="#resources">Resources</a>
+        <a href="#partners">Partners</a>
+        <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown(this)">Get Involved <i class="fas fa-chevron-down"></i></button>
+        <div class="mobile-submenu">
+            <a href="#volunteer">Volunteer</a>
+            <a href="#donate">Donate</a>
+            <a href="#partner">Partner</a>
+        </div>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Hero Slider -->
+    <section class="hero" id="hero">
+        <div class="hero-slide active" style="background-image: url('assets/lim.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1800&q=80');"></div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1522661067900-ab829854a57f?w=1800&q=80');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-tag">National NGO | Juba, South Sudan</span>
+            <h1>Uplifting Lives,<br>Building Resilience.</h1>
+            <div class="motto">Education in Emergencies • Locally Led Action • Sustainable Solutions</div>
+            <p>Lim Nguen Foundation empowers displaced and host communities through sustainable solutions and locally led resilience-building across South Sudan.</p>
+            <div class="btn-group">
+                <a href="#programs" class="btn-primary"><i class="fas fa-arrow-right"></i> Our Programs</a>
+                <a href="#donate" class="btn-outline"><i class="fas fa-heart"></i> Donate Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About / Story -->
+    <section id="about" class="section-gray">
+        <div class="grid-2 reveal">
+            <div>
+                <span class="eyebrow">Who We Are</span>
+                <h2 class="section-title">A National Voice for <span style="color:var(--teal);">Locally Led Change</span></h2>
+                <p style="font-size:18px; margin-bottom:20px;">Lim Nguen Foundation (LNF) is a National NGO dedicated to empowering displaced and host communities in South Sudan through sustainable solutions and locally led resilience-building.</p>
+                <p><strong>Mission:</strong> To uplift lives through education in emergencies, community resilience, and locally led humanitarian action that puts affected communities at the center of solutions.</p>
+                <p><strong>Vision:</strong> A South Sudan where every displaced and host community has the tools, resources, and agency to build a resilient, dignified future.</p>
+                <div class="cta-link"><a href="#mission">Learn more <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+            <div class="card-img" style="border-radius:20px; overflow:hidden; box-shadow:var(--shadow-lg);">
+                <img src="assets/lim.jpg" alt="Education in emergencies">
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission, Vision, Values -->
+    <section id="mission" class="section-light">
+        <div class="container">
+            <div class="section-heading reveal">
+                <span class="eyebrow">Guiding Principles</span>
+                <h2 class="section-title">Our <span style="color:var(--teal);">Mission, Vision & Approach</span></h2>
+            </div>
+            <div class="grid-2 reveal" style="margin-bottom:50px;">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>Our Mission</h3>
+                    <p>To uplift lives through education in emergencies, community resilience, and locally led humanitarian action that puts affected communities at the center of solutions.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-eye"></i></div>
+                    <h3>Our Vision</h3>
+                    <p>A South Sudan where every displaced and host community has the tools, resources, and agency to build a resilient, dignified future.</p>
+                </div>
+            </div>
+            <div class="grid-2 reveal">
+                <div class="card" style="background:var(--cream);">
+                    <h3 style="color:var(--navy-900); margin-bottom:15px;">Core Values</h3>
+                    <div class="values-grid">
+                        <div class="value-item"><i class="fas fa-hands-helping" style="color:var(--teal);"></i> Locally Led</div>
+                        <div class="value-item"><i class="fas fa-shield-alt" style="color:var(--teal);"></i> Resilience</div>
+                        <div class="value-item"><i class="fas fa-users" style="color:var(--teal);"></i> Community</div>
+                        <div class="value-item"><i class="fas fa-star" style="color:var(--teal);"></i> Dignity</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--navy-900); margin-bottom:15px;">How We Work</h3>
+                    <div class="approach-steps">
+                        <div class="step"><span class="step-number">1</span><p><strong>Assess</strong> – Field teams monitor school conditions and community needs.</p></div>
+                        <div class="step"><span class="step-number">2</span><p><strong>Partner</strong> – Collaborating with ECW, UNICEF, Save the Children, and local actors.</p></div>
+                        <div class="step"><span class="step-number">3</span><p><strong>Empower</strong> – Locally led solutions that strengthen community resilience.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs -->
+    <section id="programs" class="section-gray">
+        <div class="container">
+            <div class="section-heading reveal">
+                <span class="eyebrow">What We Do</span>
+                <h2 class="section-title">Our <span style="color:var(--teal);">Programs</span></h2>
+                <p class="section-subtitle">Initiatives that empower communities and build resilience.</p>
+            </div>
+            <div class="programs-grid reveal">
+                <div class="program-card" id="eie">
+                    <div class="program-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Education in Emergencies</h3>
+                    <p>Providing safe learning spaces, school rehabilitation, teacher training, and WASH facilities in crisis-affected areas.</p>
+                    <ul class="program-list">
+                        <li><i class="fas fa-check"></i> School rehabilitation</li>
+                        <li><i class="fas fa-check"></i> Teacher training</li>
+                        <li><i class="fas fa-check"></i> WASH facilities</li>
+                    </ul>
+                    <a href="#contact" class="cta-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="program-card" id="resilience">
+                    <div class="program-icon"><i class="fas fa-hands-helping"></i></div>
+                    <h3>Resilience Building</h3>
+                    <p>Strengthening community capacity to withstand conflict, displacement, and climate shocks through sustainable solutions.</p>
+                    <ul class="program-list">
+                        <li><i class="fas fa-check"></i> Community planning</li>
+                        <li><i class="fas fa-check"></i> Livelihood support</li>
+                        <li><i class="fas fa-check"></i> Climate adaptation</li>
+                    </ul>
+                    <a href="#contact" class="cta-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="program-card" id="localization">
+                    <div class="program-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Locally Led Action</h3>
+                    <p>Trusting, resourcing, and empowering local actors who are closest to the crisis to lead humanitarian responses.</p>
+                    <ul class="program-list">
+                        <li><i class="fas fa-check"></i> Local partnerships</li>
+                        <li><i class="fas fa-check"></i> Institutional strengthening</li>
+                        <li><i class="fas fa-check"></i> Community ownership</li>
+                    </ul>
+                    <a href="#contact" class="cta-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="program-card" id="youth">
+                    <div class="program-icon"><i class="fas fa-users"></i></div>
+                    <h3>Youth Leadership</h3>
+                    <p>Engaging young people in climate action, sustainable development, and continental dialogue through ECW membership.</p>
+                    <ul class="program-list">
+                        <li><i class="fas fa-check"></i> Youth forums</li>
+                        <li><i class="fas fa-check"></i> ECW sub-group</li>
+                        <li><i class="fas fa-check"></i> Climate webinars</li>
+                    </ul>
+                    <a href="#contact" class="cta-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Where We Work -->
+    <section id="where-we-work" class="where-we-work" style="background-image: url('https://images.unsplash.com/photo-1522661067900-ab829854a57f?w=1600&q=80');">
+        <div class="where-overlay"></div>
+        <div class="where-content">
+            <div class="section-heading reveal">
+                <span class="eyebrow" style="color:var(--gold-light);">Our Footprint</span>
+                <h2 class="section-title" style="color:white;">Where <span style="color:var(--gold-light);">We Work</span></h2>
+                <p style="color:rgba(255,255,255,0.85);">Juba and Uror County, South Sudan.</p>
+            </div>
+            <div class="where-grid reveal">
+                <div class="where-card">
+                    <div class="where-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Juba HQ</h3>
+                    <p>Tambura Road, Opposite Ethiopian Church</p>
+                </div>
+                <div class="where-card">
+                    <div class="where-icon"><i class="fas fa-school"></i></div>
+                    <h3>Uror County</h3>
+                    <p>Yuai Payam, Jonglei State</p>
+                </div>
+                <div class="where-card">
+                    <div class="where-icon"><i class="fas fa-tent"></i></div>
+                    <h3>Displaced Communities</h3>
+                    <p>Host and IDP settlements</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Impact Section (Enhanced) -->
+<section id="impact" class="impact-section" style="background: linear-gradient(135deg, #0A0F1F 0%, #102A43 50%, #1B3A5C 100%); padding: 100px clamp(20px,5vw,80px); position: relative; overflow: hidden;">
+    <!-- Decorative Background Elements -->
+    <div style="position:absolute; top:-100px; right:-100px; width:400px; height:400px; background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%); border-radius:50%; pointer-events:none;"></div>
+    <div style="position:absolute; bottom:-150px; left:-80px; width:500px; height:500px; background: radial-gradient(circle, rgba(212,161,42,0.1) 0%, transparent 70%); border-radius:50%; pointer-events:none;"></div>
+    
+    <div class="impact-container" style="max-width:1100px; margin:0 auto; position:relative; z-index:1;">
+        <div class="impact-heading reveal" style="text-align:center; margin-bottom:60px;">
+            <span class="eyebrow" style="display:inline-block; color:#5EEAD4; font-size:12px; font-weight:700; letter-spacing:3px; text-transform:uppercase; margin-bottom:12px;">Measurable Change</span>
+            <h2 class="section-title" style="font-size: clamp(36px,5vw,52px); font-weight:700; color:#FFFFFF; margin-bottom:16px;">Our <span style="color:#F5D67B;">Impact</span></h2>
+            <p style="color:rgba(255,255,255,0.7); font-size:18px; max-width:600px; margin:0 auto;">Every action we take contributes to building stronger, more resilient communities across South Sudan.</p>
+        </div>
+        
+        <div class="impact-stats reveal" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:30px;">
+            <!-- Schools Assessed -->
+            <div class="impact-stat" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); border-radius: 24px; padding: 40px 24px; text-align: center; transition: all 0.4s cubic-bezier(0.22,1,0.36,1); position: relative; overflow: hidden;">
+                <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #5EEAD4, #0D9488); opacity:0; transition:opacity 0.4s;"></div>
+                <div class="stat-icon" style="width:80px; height:80px; border-radius:24px; background: linear-gradient(135deg, #5EEAD4, #0D9488); color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-size:36px; margin:0 auto 20px; box-shadow: 0 15px 35px rgba(13,148,136,0.35);">
+                    <i class="fas fa-school"></i>
+                </div>
+                <div class="stat-number" data-count="20" style="font-family:'Poppins',sans-serif; font-size:64px; font-weight:800; color:#FFFFFF; line-height:1; margin-bottom:8px;">0+</div>
+                <div class="stat-label" style="color:rgba(255,255,255,0.8); font-size:16px; font-weight:600; letter-spacing:1px; text-transform:uppercase;">Schools Assessed</div>
+                <p style="color:rgba(255,255,255,0.5); font-size:14px; margin-top:8px;">Across Uror County, Jonglei State</p>
+            </div>
+
+            <!-- Children Reached -->
+            <div class="impact-stat" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); border-radius: 24px; padding: 40px 24px; text-align: center; transition: all 0.4s cubic-bezier(0.22,1,0.36,1); position: relative; overflow: hidden;">
+                <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #F5D67B, #D4A12A); opacity:0; transition:opacity 0.4s;"></div>
+                <div class="stat-icon" style="width:80px; height:80px; border-radius:24px; background: linear-gradient(135deg, #F5D67B, #D4A12A); color:#0A0F1F; display:flex; align-items:center; justify-content:center; font-size:36px; margin:0 auto 20px; box-shadow: 0 15px 35px rgba(212,161,42,0.35);">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-number" data-count="1000" style="font-family:'Poppins',sans-serif; font-size:64px; font-weight:800; color:#FFFFFF; line-height:1; margin-bottom:8px;">0+</div>
+                <div class="stat-label" style="color:rgba(255,255,255,0.8); font-size:16px; font-weight:600; letter-spacing:1px; text-transform:uppercase;">Children Reached</div>
+                <p style="color:rgba(255,255,255,0.5); font-size:14px; margin-top:8px;">Through Education in Emergencies programs</p>
+            </div>
+
+            <!-- Partners -->
+            <div class="impact-stat" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); border-radius: 24px; padding: 40px 24px; text-align: center; transition: all 0.4s cubic-bezier(0.22,1,0.36,1); position: relative; overflow: hidden;">
+                <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #93C5FD, #3B82F6); opacity:0; transition:opacity 0.4s;"></div>
+                <div class="stat-icon" style="width:80px; height:80px; border-radius:24px; background: linear-gradient(135deg, #93C5FD, #3B82F6); color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-size:36px; margin:0 auto 20px; box-shadow: 0 15px 35px rgba(59,130,246,0.35);">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <div class="stat-number" data-count="10" style="font-family:'Poppins',sans-serif; font-size:64px; font-weight:800; color:#FFFFFF; line-height:1; margin-bottom:8px;">0+</div>
+                <div class="stat-label" style="color:rgba(255,255,255,0.8); font-size:16px; font-weight:600; letter-spacing:1px; text-transform:uppercase;">Partners</div>
+                <p style="color:rgba(255,255,255,0.5); font-size:14px; margin-top:8px;">Including ECW, UNICEF, and Save the Children</p>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div style="text-align:center; margin-top:50px;" class="reveal">
+            <a href="#contact" style="display:inline-flex; align-items:center; gap:10px; background:#F5D67B; color:#0A0F1F; padding:16px 32px; border-radius:999px; font-weight:700; font-size:16px; transition:all 0.3s; box-shadow:0 15px 35px rgba(212,161,42,0.3);">
+                Partner With Us to Expand Our Impact <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Hover effects for impact stats */
+    .impact-stat:hover {
+        transform: translateY(-12px) !important;
+        background: rgba(255,255,255,0.1) !important;
+        border-color: rgba(255,255,255,0.3) !important;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.35) !important;
+    }
+    .impact-stat:hover > div:first-child {
+        opacity: 1 !important;
+    }
+    .impact-stat:hover .stat-icon {
+        transform: scale(1.1) rotate(3deg);
+    }
+    .impact-stat .stat-icon {
+        transition: transform 0.3s ease;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .impact-stats {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+        .impact-stat {
+            padding: 30px 20px !important;
+        }
+        .stat-number {
+            font-size: 48px !important;
+        }
+    }
+</style>
+
+  <!-- News & Updates (Enhanced) -->
+<section id="news" class="section-gray" style="background: #FAF8F4; padding: 100px clamp(20px,5vw,80px);">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+        <div class="section-heading reveal" style="text-align:center; max-width:700px; margin:0 auto 50px;">
+            <span class="eyebrow" style="color:#0D9488; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase;">Latest Updates</span>
+            <h2 class="section-title" style="font-size: clamp(32px,5vw,48px); color:#0A0F1F; margin-bottom:16px;">News & <span style="color:#0D9488;">Announcements</span></h2>
+            <p style="color:#6B7280; font-size:18px;">Stay informed about our latest achievements, partnerships, and field activities.</p>
+        </div>
+
+        <div class="news-grid reveal" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(350px,1fr)); gap:35px;">
+            <!-- News Card 1 -->
+            <div class="news-card" style="background:white; border-radius:24px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.05); transition:all 0.4s cubic-bezier(0.22,1,0.36,1); display:flex; flex-direction:column; border:1px solid rgba(0,0,0,0.04);">
+                <div class="news-image" style="aspect-ratio:16/10; overflow:hidden;">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80" alt="NCAGE Code" style="width:100%; height:100%; object-fit:cover; transition:transform 0.6s;">
+                </div>
+                <div class="news-body" style="padding:28px; flex-grow:1; display:flex; flex-direction:column;">
+                    <div class="news-meta" style="display:flex; gap:15px; font-size:12px; color:#6B7280; margin-bottom:14px;">
+                        <span><i class="fas fa-calendar" style="color:#0D9488; margin-right:5px;"></i> 6 days ago</span>
+                        <span class="news-category" style="background:#E0F2F1; color:#0D9488; padding:4px 12px; border-radius:999px; font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">Milestone</span>
+                    </div>
+                    <h3 style="font-size:24px; color:#0A0F1F; margin-bottom:12px; font-family:'Poppins',sans-serif; font-weight:700; line-height:1.3;">LNF Receives NATO NCAGE Code</h3>
+                    <p style="color:#6B7280; font-size:15px; line-height:1.7; flex-grow:1; margin-bottom:20px;">
+                        Lim Nguen Foundation has been officially assigned the NATO Commercial and Government Entity (NCAGE) Code: STUV3 by the NATO Support and Procurement Agency (NSPA), enhancing our readiness for international partnerships and institutional development.
+                    </p>
+                    <a href="#" style="display:inline-flex; align-items:center; gap:8px; font-weight:700; color:#0D9488; transition:color 0.3s; font-size:15px;">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- News Card 2 -->
+            <div class="news-card" style="background:white; border-radius:24px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.05); transition:all 0.4s cubic-bezier(0.22,1,0.36,1); display:flex; flex-direction:column; border:1px solid rgba(0,0,0,0.04);">
+                <div class="news-image" style="aspect-ratio:16/10; overflow:hidden;">
+                    <img src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=800&q=80" alt="World Humanitarian Day" style="width:100%; height:100%; object-fit:cover; transition:transform 0.6s;">
+                </div>
+                <div class="news-body" style="padding:28px; flex-grow:1; display:flex; flex-direction:column;">
+                    <div class="news-meta" style="display:flex; gap:15px; font-size:12px; color:#6B7280; margin-bottom:14px;">
+                        <span><i class="fas fa-calendar" style="color:#0D9488; margin-right:5px;"></i> August 19, 2026</span>
+                        <span class="news-category" style="background:#E0F2F1; color:#0D9488; padding:4px 12px; border-radius:999px; font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">Awareness</span>
+                    </div>
+                    <h3 style="font-size:24px; color:#0A0F1F; margin-bottom:12px; font-family:'Poppins',sans-serif; font-weight:700; line-height:1.3;">World Humanitarian Day 2026</h3>
+                    <p style="color:#6B7280; font-size:15px; line-height:1.7; flex-grow:1; margin-bottom:20px;">
+                        LNF joins the global community in honoring humanitarian workers, especially national staff and frontline responders who serve communities affected by conflict, displacement, and climate shocks with courage and compassion.
+                    </p>
+                    <a href="#" style="display:inline-flex; align-items:center; gap:8px; font-weight:700; color:#0D9488; transition:color 0.3s; font-size:15px;">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- News Card 3 -->
+            <div class="news-card" style="background:white; border-radius:24px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.05); transition:all 0.4s cubic-bezier(0.22,1,0.36,1); display:flex; flex-direction:column; border:1px solid rgba(0,0,0,0.04);">
+                <div class="news-image" style="aspect-ratio:16/10; overflow:hidden;">
+                    <img src="https://images.unsplash.com/photo-1522661067900-ab829854a57f?w=800&q=80" alt="ECW Membership" style="width:100%; height:100%; object-fit:cover; transition:transform 0.6s;">
+                </div>
+                <div class="news-body" style="padding:28px; flex-grow:1; display:flex; flex-direction:column;">
+                    <div class="news-meta" style="display:flex; gap:15px; font-size:12px; color:#6B7280; margin-bottom:14px;">
+                        <span><i class="fas fa-calendar" style="color:#0D9488; margin-right:5px;"></i> August 14, 2026</span>
+                        <span class="news-category" style="background:#E0F2F1; color:#0D9488; padding:4px 12px; border-radius:999px; font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">Membership</span>
+                    </div>
+                    <h3 style="font-size:24px; color:#0A0F1F; margin-bottom:12px; font-family:'Poppins',sans-serif; font-weight:700; line-height:1.3;">LNF Joins ECW Youth Sub-group</h3>
+                    <p style="color:#6B7280; font-size:15px; line-height:1.7; flex-grow:1; margin-bottom:20px;">
+                        Lim Nguen Foundation is now an official member of the Education Cannot Wait (ECW) Youth & Student-led Sub-group, strengthening our commitment to Education in Emergencies and youth leadership across South Sudan.
+                    </p>
+                    <a href="#" style="display:inline-flex; align-items:center; gap:8px; font-weight:700; color:#0D9488; transition:color 0.3s; font-size:15px;">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- See All News Button -->
+        <div style="text-align:center; margin-top:50px;" class="reveal">
+            <a href="#news" style="display:inline-flex; align-items:center; gap:10px; background:#0D9488; color:white; padding:16px 36px; border-radius:999px; font-weight:700; font-size:16px; transition:all 0.3s; box-shadow:0 10px 25px rgba(13,148,136,0.4);">
+                See All News <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Hover effects for news cards */
+    .news-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 25px 60px rgba(0,0,0,0.12) !important;
+        border-color: rgba(13,148,136,0.2) !important;
+    }
+    .news-card:hover .news-image img {
+        transform: scale(1.08);
+    }
+    .news-card a:hover {
+        color: #D4A12A !important;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .news-grid {
+            grid-template-columns: 1fr !important;
+            gap: 25px !important;
+        }
+    }
+</style>
+<!-- Resources Section (Enhanced with Deep Blue Premium Design) -->
+<section id="resources" style="background: linear-gradient(135deg, #0A0F1F 0%, #102A43 50%, #1B3A5C 100%); padding: 100px clamp(20px,5vw,80px); position: relative; overflow: hidden;">
+    <!-- Decorative Background Elements -->
+    <div style="position:absolute; top:-80px; right:-80px; width:350px; height:350px; background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%); border-radius:50%; pointer-events:none;"></div>
+    <div style="position:absolute; bottom:-120px; left:-60px; width:400px; height:400px; background: radial-gradient(circle, rgba(212,161,42,0.1) 0%, transparent 70%); border-radius:50%; pointer-events:none;"></div>
+
+    <div class="container" style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+        <div class="section-heading reveal" style="text-align:center; max-width:700px; margin:0 auto 60px;">
+            <span class="eyebrow" style="display:inline-block; color:#5EEAD4; font-size:12px; font-weight:700; letter-spacing:3px; text-transform:uppercase; margin-bottom:12px;">Knowledge & Transparency</span>
+            <h2 class="section-title" style="font-size: clamp(32px,5vw,48px); font-weight:700; color:#FFFFFF; margin-bottom:16px;">Resources & <span style="color:#F5D67B;">Publications</span></h2>
+            <p style="color:rgba(255,255,255,0.7); font-size:18px; margin:0 auto;">Access our official reports, assessments, and organizational documents that guide our work.</p>
+        </div>
+
+        <div class="resources-grid reveal" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:30px;">
+            <!-- Resource Card: Annual Reports -->
+            <div class="resource-card" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); border-radius: 24px; padding: 35px 28px; transition: all 0.4s cubic-bezier(0.22,1,0.36,1); position: relative; overflow: hidden; display:flex; flex-direction:column;">
+                <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #5EEAD4, #0D9488); opacity:0; transition:opacity 0.4s;"></div>
+                <div class="resource-icon" style="width:64px; height:64px; border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:28px; margin-bottom:20px; color:#FFFFFF; background: linear-gradient(135deg, #5EEAD4, #0D9488); box-shadow: 0 8px 20px rgba(13,148,136,0.4);">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h3 style="font-size:24px; color:#FFFFFF; margin-bottom:12px; font-family:'Poppins',sans-serif; font-weight:700;">Annual Reports</h3>
+                <p style="color:rgba(255,255,255,0.7); font-size:15px; line-height:1.7; flex-grow:1; margin-bottom:16px;">Yearly summaries of LNF's activities, achievements, and financial performance across all our programs.</p>
+                <div style="display:flex; gap:15px; font-size:12px; color:rgba(255,255,255,0.6); margin-bottom:18px;">
+                    <span><i class="fas fa-file-pdf" style="color:#5EEAD4; margin-right:5px;"></i> PDF Document</span>
+                </div>
+                <a href="#" class="btn-download" onclick="return false;" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; background:#F5D67B; color:#0A0F1F; padding:12px 20px; border-radius:999px; font-weight:700; font-size:14px; transition:all 0.3s; cursor:pointer; text-decoration:none;">
+                    <i class="fas fa-download"></i> Download Report
+                </a>
+            </div>
+
+            <!-- Resource Card: School Assessments -->
+            <div class="resource-card" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); border-radius: 24px; padding: 35px 28px; transition: all 0.4s cubic-bezier(0.22,1,0.36,1); position: relative; overflow: hidden; display:flex; flex-direction:column;">
+                <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #F5D67B, #D4A12A); opacity:0; transition:opacity 0.4s;"></div>
+                <div class="resource-icon" style="width:64px; height:64px; border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:28px; margin-bottom:20px; color:#0A0F1F; background: linear-gradient(135deg, #F5D67B, #D4A12A); box-shadow: 0 8px 20px rgba(212,161,42,0.4);">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3 style="font-size:24px; color:#FFFFFF; margin-bottom:12px; font-family:'Poppins',sans-serif; font-weight:700;">School Assessments</h3>
+                <p style="color:rgba(255,255,255,0.7); font-size:15px; line-height:1.7; flex-grow:1; margin-bottom:16px;">Field observation assessments and school condition reports from Uror County, Jonglei State.</p>
+                <div style="display:flex; gap:15px; font-size:12px; color:rgba(255,255,255,0.6); margin-bottom:18px;">
+                    <span><i class="fas fa-file-pdf" style="color:#F5D67B; margin-right:5px;"></i> PDF Document</span>
+                </div>
+                <a href="#" class="btn-download" onclick="return false;" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; background:#5EEAD4; color:#0A0F1F; padding:12px 20px; border-radius:999px; font-weight:700; font-size:14px; transition:all 0.3s; cursor:pointer; text-decoration:none;">
+                    <i class="fas fa-download"></i> Download Assessment
+                </a>
+            </div>
+
+            <!-- Resource Card: Public Statements -->
+            <div class="resource-card" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); border-radius: 24px; padding: 35px 28px; transition: all 0.4s cubic-bezier(0.22,1,0.36,1); position: relative; overflow: hidden; display:flex; flex-direction:column;">
+                <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #93C5FD, #3B82F6); opacity:0; transition:opacity 0.4s;"></div>
+                <div class="resource-icon" style="width:64px; height:64px; border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:28px; margin-bottom:20px; color:#FFFFFF; background: linear-gradient(135deg, #93C5FD, #3B82F6); box-shadow: 0 8px 20px rgba(59,130,246,0.4);">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3 style="font-size:24px; color:#FFFFFF; margin-bottom:12px; font-family:'Poppins',sans-serif; font-weight:700;">Public Statements</h3>
+                <p style="color:rgba(255,255,255,0.7); font-size:15px; line-height:1.7; flex-grow:1; margin-bottom:16px;">Official positions on Education in Emergencies, localization, and community resilience.</p>
+                <div style="display:flex; gap:15px; font-size:12px; color:rgba(255,255,255,0.6); margin-bottom:18px;">
+                    <span><i class="fas fa-file-pdf" style="color:#93C5FD; margin-right:5px;"></i> PDF Document</span>
+                </div>
+                <a href="#" class="btn-download" onclick="return false;" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; background:#F5D67B; color:#0A0F1F; padding:12px 20px; border-radius:999px; font-weight:700; font-size:14px; transition:all 0.3s; cursor:pointer; text-decoration:none;">
+                    <i class="fas fa-download"></i> Download Statement
+                </a>
+            </div>
+
+            <!-- Resource Card: Policies -->
+            <div class="resource-card" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); border-radius: 24px; padding: 35px 28px; transition: all 0.4s cubic-bezier(0.22,1,0.36,1); position: relative; overflow: hidden; display:flex; flex-direction:column;">
+                <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #5EEAD4, #0D9488); opacity:0; transition:opacity 0.4s;"></div>
+                <div class="resource-icon" style="width:64px; height:64px; border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:28px; margin-bottom:20px; color:#FFFFFF; background: linear-gradient(135deg, #5EEAD4, #0D9488); box-shadow: 0 8px 20px rgba(13,148,136,0.4);">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h3 style="font-size:24px; color:#FFFFFF; margin-bottom:12px; font-family:'Poppins',sans-serif; font-weight:700;">Policies</h3>
+                <p style="color:rgba(255,255,255,0.7); font-size:15px; line-height:1.7; flex-grow:1; margin-bottom:16px;">Organizational policies, governance documents, and operational frameworks that ensure accountability.</p>
+                <div style="display:flex; gap:15px; font-size:12px; color:rgba(255,255,255,0.6); margin-bottom:18px;">
+                    <span><i class="fas fa-file-pdf" style="color:#5EEAD4; margin-right:5px;"></i> PDF Document</span>
+                </div>
+                <a href="#" class="btn-download" onclick="return false;" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; background:#F5D67B; color:#0A0F1F; padding:12px 20px; border-radius:999px; font-weight:700; font-size:14px; transition:all 0.3s; cursor:pointer; text-decoration:none;">
+                    <i class="fas fa-download"></i> Download Policy
+                </a>
+            </div>
+        </div>
+
+        <!-- View All Resources CTA -->
+        <div style="text-align:center; margin-top:50px;" class="reveal">
+            <a href="#resources" style="display:inline-flex; align-items:center; gap:10px; background:#0D9488; color:white; padding:16px 36px; border-radius:999px; font-weight:700; font-size:16px; transition:all 0.3s; box-shadow:0 10px 25px rgba(13,148,136,0.4);">
+                View All Resources <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Hover effects for resource cards */
+    .resource-card:hover {
+        transform: translateY(-12px);
+        background: rgba(255,255,255,0.1) !important;
+        border-color: rgba(255,255,255,0.3) !important;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.35) !important;
+    }
+    .resource-card:hover > div:first-child {
+        opacity: 1 !important;
+    }
+    .resource-card:hover .resource-icon {
+        transform: scale(1.1) rotate(3deg);
+    }
+    .resource-card .resource-icon {
+        transition: transform 0.3s ease;
+    }
+    .resource-card .btn-download:hover {
+        opacity: 0.85;
+        transform: translateY(-2px);
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+        .resources-grid {
+            grid-template-columns: 1fr !important;
+            gap: 25px !important;
+        }
+        .resource-card {
+            padding: 28px 22px !important;
+        }
+    }
+</style>
+
+    <!-- Partners -->
+    <section id="partners" class="partners-section">
+        <div class="container">
+            <div class="section-heading reveal" style="text-align:center;">
+                <span class="eyebrow">Collaboration</span>
+                <h2 class="section-title">Our <span style="color:var(--teal);">Partners</span></h2>
+            </div>
+        </div>
+        <div class="partner-marquee reveal">
+            <div class="partner-track">
+                <div class="partner-item"><i class="fas fa-book"></i><span>Education Cannot Wait</span></div>
+                <div class="partner-item"><i class="fas fa-building-columns"></i><span>UNICEF</span></div>
+                <div class="partner-item"><i class="fas fa-hand-holding-heart"></i><span>Save the Children South Sudan</span></div>
+                <div class="partner-item"><i class="fas fa-globe"></i><span>Ministry of General Education</span></div>
+                <div class="partner-item"><i class="fas fa-users"></i><span>Education Cluster Partners</span></div>
+                <div class="partner-item"><i class="fas fa-plant"></i><span>Plant One Tree Lesotho</span></div>
+                <div class="partner-item"><i class="fas fa-book"></i><span>Education Cannot Wait</span></div>
+                <div class="partner-item"><i class="fas fa-building-columns"></i><span>UNICEF</span></div>
+                <div class="partner-item"><i class="fas fa-hand-holding-heart"></i><span>Save the Children South Sudan</span></div>
+                <div class="partner-item"><i class="fas fa-globe"></i><span>Ministry of General Education</span></div>
+                <div class="partner-item"><i class="fas fa-users"></i><span>Education Cluster Partners</span></div>
+                <div class="partner-item"><i class="fas fa-plant"></i><span>Plant One Tree Lesotho</span></div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Get Involved Section (Enhanced Deep Blue Premium Design) -->
+<section id="get-involved" style="background: linear-gradient(135deg, #0A0F1F 0%, #102A43 50%, #1B3A5C 100%); padding: 100px clamp(20px,5vw,80px); position: relative; overflow: hidden;">
+    <!-- Decorative Background Elements -->
+    <div style="position:absolute; top:-80px; right:-80px; width:350px; height:350px; background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%); border-radius:50%; pointer-events:none;"></div>
+    <div style="position:absolute; bottom:-120px; left:-60px; width:400px; height:400px; background: radial-gradient(circle, rgba(212,161,42,0.1) 0%, transparent 70%); border-radius:50%; pointer-events:none;"></div>
+
+    <div class="container" style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+        <div class="section-heading reveal" style="text-align:center; max-width:700px; margin:0 auto 60px;">
+            <span class="eyebrow" style="display:inline-block; color:#5EEAD4; font-size:12px; font-weight:700; letter-spacing:3px; text-transform:uppercase; margin-bottom:12px;">Take Action</span>
+            <h2 class="section-title" style="font-size: clamp(32px,5vw,48px); font-weight:700; color:#FFFFFF; margin-bottom:16px;">Get <span style="color:#F5D67B;">Involved</span></h2>
+            <p style="color:rgba(255,255,255,0.7); font-size:18px; margin:0 auto;">Your support can change lives. Join us in restoring hope and building resilient communities across South Sudan.</p>
+        </div>
+
+        <div class="involve-grid reveal" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px;">
+            <!-- Volunteer Card -->
+            <div class="involve-card" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); border-radius: 24px; padding: 40px 28px; transition: all 0.4s cubic-bezier(0.22,1,0.36,1); position: relative; overflow: hidden; display:flex; flex-direction:column;">
+                <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #5EEAD4, #0D9488); opacity:0; transition:opacity 0.4s;"></div>
+                <div class="involve-icon" style="width:70px; height:70px; border-radius:20px; display:flex; align-items:center; justify-content:center; font-size:32px; margin-bottom:20px; color:#FFFFFF; background: linear-gradient(135deg, #5EEAD4, #0D9488); box-shadow: 0 8px 20px rgba(13,148,136,0.4); transition: transform 0.3s;">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3 style="font-size:26px; color:#FFFFFF; margin-bottom:12px; font-family:'Poppins',sans-serif; font-weight:700;">Volunteer</h3>
+                <p style="color:rgba(255,255,255,0.8); font-size:15px; line-height:1.7; margin-bottom:18px; flex-grow:1;">Join our team and help deliver education, resilience, and hope to vulnerable communities.</p>
+                <ul style="list-style:none; margin-bottom:20px; flex-grow:1;">
+                    <li style="display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(255,255,255,0.85); padding:6px 0;"><i class="fas fa-check-circle" style="color:#5EEAD4; font-size:16px;"></i> Education support</li>
+                    <li style="display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(255,255,255,0.85); padding:6px 0;"><i class="fas fa-check-circle" style="color:#5EEAD4; font-size:16px;"></i> Community outreach</li>
+                </ul>
+                <a href="#contact" style="display:inline-flex; align-items:center; gap:8px; font-weight:700; color:#5EEAD4; padding:12px 0; transition:color 0.3s;">Apply Now <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Donate Card -->
+            <div class="involve-card" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); border-radius: 24px; padding: 40px 28px; transition: all 0.4s cubic-bezier(0.22,1,0.36,1); position: relative; overflow: hidden; display:flex; flex-direction:column;">
+                <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #F5D67B, #D4A12A); opacity:0; transition:opacity 0.4s;"></div>
+                <div class="involve-icon" style="width:70px; height:70px; border-radius:20px; display:flex; align-items:center; justify-content:center; font-size:32px; margin-bottom:20px; color:#0A0F1F; background: linear-gradient(135deg, #F5D67B, #D4A12A); box-shadow: 0 8px 20px rgba(212,161,42,0.4); transition: transform 0.3s;">
+                    <i class="fas fa-donate"></i>
+                </div>
+                <h3 style="font-size:26px; color:#FFFFFF; margin-bottom:12px; font-family:'Poppins',sans-serif; font-weight:700;">Donate</h3>
+                <p style="color:rgba(255,255,255,0.8); font-size:15px; line-height:1.7; margin-bottom:18px; flex-grow:1;">Support our programs with funds, learning materials, or essential school supplies.</p>
+                <ul style="list-style:none; margin-bottom:20px; flex-grow:1;">
+                    <li style="display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(255,255,255,0.85); padding:6px 0;"><i class="fas fa-check-circle" style="color:#F5D67B; font-size:16px;"></i> Fund school rehabilitation</li>
+                    <li style="display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(255,255,255,0.85); padding:6px 0;"><i class="fas fa-check-circle" style="color:#F5D67B; font-size:16px;"></i> Provide learning materials</li>
+                </ul>
+                <a href="#contact" style="display:inline-flex; align-items:center; gap:8px; font-weight:700; color:#F5D67B; padding:12px 0; transition:color 0.3s;">Donate Now <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Partner Card -->
+            <div class="involve-card" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); border-radius: 24px; padding: 40px 28px; transition: all 0.4s cubic-bezier(0.22,1,0.36,1); position: relative; overflow: hidden; display:flex; flex-direction:column;">
+                <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #93C5FD, #3B82F6); opacity:0; transition:opacity 0.4s;"></div>
+                <div class="involve-icon" style="width:70px; height:70px; border-radius:20px; display:flex; align-items:center; justify-content:center; font-size:32px; margin-bottom:20px; color:#FFFFFF; background: linear-gradient(135deg, #93C5FD, #3B82F6); box-shadow: 0 8px 20px rgba(59,130,246,0.4); transition: transform 0.3s;">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3 style="font-size:26px; color:#FFFFFF; margin-bottom:12px; font-family:'Poppins',sans-serif; font-weight:700;">Partner</h3>
+                <p style="color:rgba(255,255,255,0.8); font-size:15px; line-height:1.7; margin-bottom:18px; flex-grow:1;">Collaborate with us to advance Education in Emergencies and locally led humanitarian action.</p>
+                <ul style="list-style:none; margin-bottom:20px; flex-grow:1;">
+                    <li style="display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(255,255,255,0.85); padding:6px 0;"><i class="fas fa-check-circle" style="color:#93C5FD; font-size:16px;"></i> Joint initiatives</li>
+                    <li style="display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(255,255,255,0.85); padding:6px 0;"><i class="fas fa-check-circle" style="color:#93C5FD; font-size:16px;"></i> Advocacy</li>
+                </ul>
+                <a href="#contact" style="display:inline-flex; align-items:center; gap:8px; font-weight:700; color:#93C5FD; padding:12px 0; transition:color 0.3s;">Partner With Us <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div style="text-align:center; margin-top:60px;" class="reveal">
+            <a href="#contact" style="display:inline-flex; align-items:center; gap:10px; background:#F5D67B; color:#0A0F1F; padding:16px 36px; border-radius:999px; font-weight:700; font-size:16px; transition:all 0.3s; box-shadow:0 15px 35px rgba(212,161,42,0.3);">
+                Partner With Us to Expand Our Impact <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Hover effects for involve cards */
+    .involve-card:hover {
+        transform: translateY(-12px);
+        background: rgba(255,255,255,0.1) !important;
+        border-color: rgba(255,255,255,0.3) !important;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.35) !important;
+    }
+    .involve-card:hover > div:first-child {
+        opacity: 1 !important;
+    }
+    .involve-card:hover .involve-icon {
+        transform: scale(1.1) rotate(3deg);
+    }
+    .involve-card:hover a {
+        opacity: 0.85;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+        .involve-grid {
+            grid-template-columns: 1fr !important;
+            gap: 25px !important;
+        }
+        .involve-card {
+            padding: 30px 22px !important;
+        }
+    }
+</style>
+
+    <!-- Contact -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-heading reveal" style="text-align:center;">
+                <span class="eyebrow">Get In Touch</span>
+                <h2 class="section-title">Contact <span style="color:var(--teal);">Us</span></h2>
+            </div>
+            <div class="contact-wrapper reveal">
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <h4>Visit Us</h4>
+                        <p>Tambura Road, Opposite Ethiopian Church, Juba, Central Equatoria State, South Sudan</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <h4>Call Us</h4>
+                        <p>0927 960 466<br>+211 927 960 466</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <h4>Email</h4>
+                        <p>info@limnguenfoundation-ss.org</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-globe"></i></div>
+                        <h4>Website</h4>
+                        <p>info@limnguenfoundation-ss.org</p>
+                    </div>
+                </div>
+                <div class="contact-form-card">
+                    <h3 style="font-family:'Poppins',sans-serif; font-size:26px; color:var(--navy-900); margin-bottom:20px;">Send a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group"><label>Full Name *</label><input type="text" required placeholder="Your name" /></div>
+                            <div class="form-group"><label>Email *</label><input type="email" required placeholder="Your email" /></div>
+                        </div>
+                        <div class="form-group"><label>Subject</label><input type="text" placeholder="How can we help?" /></div>
+                        <div class="form-group"><label>Message *</label><textarea required placeholder="Write your message..."></textarea></div>
+                        <button type="submit" class="btn-primary btn-submit">Send Message <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col footer-about">
+                <h4>Lim Nguen Foundation</h4>
+                <p>A National NGO empowering displaced and host communities through sustainable solutions and locally led resilience-building.</p>
+                <div class="footer-socials">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="#news">News</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Programs</h4>
+                <ul>
+                    <li><a href="#eie">Education in Emergencies</a></li>
+                    <li><a href="#resilience">Resilience Building</a></li>
+                    <li><a href="#localization">Locally Led Action</a></li>
+                    <li><a href="#youth">Youth Leadership</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Juba, South Sudan</li>
+                    <li><i class="fas fa-phone"></i> 0927 960 466</li>
+                    <li><i class="fas fa-envelope"></i> info@limnguenfoundation-ss.org</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Lim Nguen Foundation (LNF). All rights reserved. | Uplifting Lives Through Locally Led Humanitarian Action</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+   <script>
+    (function() {
+        // ----- Mobile Menu Toggle -----
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileToggle.addEventListener('click', () => mobileMenu.classList.toggle('active'));
+
+        // Close mobile menu when a main link is clicked
+        mobileMenu.querySelectorAll('a:not(.mobile-submenu a)').forEach(link =>
+            link.addEventListener('click', () => mobileMenu.classList.remove('active'))
+        );
+
+        // ----- Mobile Dropdown Toggle -----
+        document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const submenu = this.nextElementSibling;
+                const icon = this.querySelector('i');
+
+                document.querySelectorAll('.mobile-submenu.open').forEach(openSub => {
+                    if (openSub !== submenu) {
+                        openSub.classList.remove('open');
+                        const otherIcon = openSub.previousElementSibling.querySelector('i');
+                        if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                submenu.classList.toggle('open');
+                icon.style.transform = submenu.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        });
+
+        // Close mobile menu when a submenu link is clicked
+        document.querySelectorAll('.mobile-submenu a').forEach(link =>
+            link.addEventListener('click', () => mobileMenu.classList.remove('active'))
+        );
+
+        // ----- Hero Slider -----
+        const slides = document.querySelectorAll('.hero-slide');
+        if (slides.length > 0) {
+            let current = 0;
+            setInterval(() => {
+                slides[current].classList.remove('active');
+                current = (current + 1) % slides.length;
+                slides[current].classList.add('active');
+            }, 5000);
+        }
+
+        // ----- Navbar Scroll Effect & Back to Top -----
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
+            if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 400);
+        });
+        if (backToTop) backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // ----- Reveal on Scroll -----
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ----- Animated Counters (with NaN protection) -----
+        const counters = document.querySelectorAll('.stat-number');
+        const counterObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const rawValue = el.getAttribute('data-count');
+                    // Parse number, fallback to 0 if missing or invalid
+                    const target = parseInt(rawValue, 10);
+                    const targetNumber = isNaN(target) ? 0 : target;
+                    const duration = 2000;
+                    const start = performance.now();
+
+                    function updateCount(now) {
+                        const progress = Math.min((now - start) / duration, 1);
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        const current = Math.floor(eased * targetNumber);
+                        el.textContent = current + '+';
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            el.textContent = targetNumber + '+';
+                        }
+                    }
+                    requestAnimationFrame(updateCount);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // ----- Contact Form -----
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', e => {
+                e.preventDefault();
+                alert('Thank you! We will get back to you soon.');
+                e.target.reset();
+            });
+        }
+    })();
+</script>
+</body>
+</html>
